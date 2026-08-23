@@ -10,6 +10,7 @@ from __future__ import annotations
 import collections
 import io
 import json
+import os
 import sys
 from array import array
 from pathlib import Path
@@ -18,7 +19,14 @@ import numpy as np
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-DUMP = Path(r"C:\Users\Admin\lean-work\opaquedisc\mathlib_split.tsv")
+#: The Split.lean dump: first argument, or $LEAN_DUMP.  No default, because a
+#: path baked into a script names somebody's home directory and runs nowhere else.
+if len(sys.argv) > 1:
+    DUMP = Path(sys.argv[1])
+elif os.environ.get("LEAN_DUMP"):
+    DUMP = Path(os.environ["LEAN_DUMP"])
+else:
+    raise SystemExit("usage: leanindex.py <mathlib_split.tsv>   (or set LEAN_DUMP)")
 
 TARGETS = {
     "sorryAx": "unfinished",

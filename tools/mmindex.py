@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import io
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -16,11 +17,10 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 from gonzalgo import metamath  # noqa: E402
 
-SCRATCH = Path(
-    r"C:\Users\Admin\AppData\Local\Temp\claude"
-    r"\C--Users-Admin-OneDrive-Desktop-Pro-Categories-Application-Prompt"
-    r"\26bbb6ed-7be4-4b9c-9e0f-17f4def461f4\scratchpad"
-)
+#: Where the .mm databases sit: the first argument, or $MM_DATABASES, or here.
+#: This used to be an absolute path to a private scratch directory, which named
+#: a home directory in a public repository and worked on exactly one machine.
+DATABASES = Path(sys.argv[1] if len(sys.argv) > 1 else os.environ.get("MM_DATABASES", "."))
 
 DBS = [
     ("set.mm", "ZFC set theory, classical first-order logic"),
@@ -72,7 +72,7 @@ def incomplete_labels(path: Path) -> set[str]:
 
 rows = []
 for name, foundation in DBS:
-    p = SCRATCH / name
+    p = DATABASES / name
     if not p.exists():
         print(f"  {name}: not present, skipped")
         continue
