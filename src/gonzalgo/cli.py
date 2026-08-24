@@ -53,7 +53,12 @@ def cmd_check(args) -> int:
     stats = lean.check_dump(Path(args.dump))
     for k, v in stats.items():
         print(f"  {k:<22}{v:>12,}")
-    print("\n  OK: proof terms are present.")
+    if stats["theorems"]:
+        print("\n  OK: proof terms are present.")
+    else:
+        # saying "proof terms are present" over zero theorems claims a check
+        # that never ran
+        print("\n  OK: no theorems in this dump, so there were no proof terms to check.")
     return 0
 
 

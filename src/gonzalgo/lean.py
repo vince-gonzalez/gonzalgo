@@ -67,6 +67,11 @@ ESCAPE_HATCHES: dict[str, str] = {
 UNREMARKABLE = frozenset({"propext", "Quot.sound"})
 
 
+#: The kinds Split.lean emits: axiom, theorem, definition, anything else.
+#: A file with rows but none of these is not a dump.
+KINDS = frozenset({"A", "T", "D", "O"})
+
+
 def _open(path: Path):
     if str(path).endswith(".gz"):
         return gzip.open(path, "rt", encoding="utf-8", errors="replace")
@@ -113,12 +118,31 @@ def check_dump(path: Path) -> dict[str, int]:
     is never a statistic.
     """
     stats = {"declarations": 0, "theorems": 0, "theorems_with_proof": 0}
+    recognised = 0
     for p in rows(path):
         stats["declarations"] += 1
+        if p[0] in KINDS:
+            recognised += 1
         if p[0] == "T":
             stats["theorems"] += 1
             if len(p) > 3 and p[3].strip():
                 stats["theorems_with_proof"] += 1
+    if not recognised:
+        seen = (
+            "no rows at all"
+            if not stats["declarations"]
+            else f"{stats['declarations']:,} row(s) and not one carrying a known "
+            f"kind ({'/'.join(sorted(KINDS))})"
+        )
+        raise DumpError(
+            f"{path.name}: {seen}, so this is not a dump. A file "
+            "this reader cannot parse yields an empty graph rather than an error, "
+            "and an empty graph answers every question with zero: no axiom reached, "
+            "no theorem eligible, nothing inheriting a sorry. This guard used to "
+            "fire only when theorems existed without proof terms, so a README, a "
+            "JSON file, an empty file and a binary blob all passed it and every "
+            "command downstream reported a clean library."
+        )
     if stats["theorems"] and not stats["theorems_with_proof"]:
         raise DumpError(
             f"{path.name}: {stats['theorems']:,} theorems, none carrying a proof "
@@ -195,7 +219,12 @@ def real_witness(w: str) -> bool:
     w = w.strip()
     if not w or "✝" in w:
         return False
-    return " " in w or "." in w
+    if " " not in w and "." not in w:
+        return False
+    # The head has to look like a name. `" " in w or "." in w` alone accepted
+    # "42 43" and a lone ".", neither of which is anything to substitute.
+    head = w.split(" ", 1)[0].split(".", 1)[0]
+    return bool(head) and (head[0].isalpha() or head[0] == "_")
 
 
 @dataclass
