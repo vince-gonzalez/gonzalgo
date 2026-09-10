@@ -18,7 +18,7 @@
 [![License](https://img.shields.io/pypi/l/gonzalgo)](LICENSE)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21769846-blue)](https://doi.org/10.5281/zenodo.21769846)
 
-<!-- mcp-name: io.github.vince-gonzalez/gonzalgo -->
+<!-- mcp-name: io.github.zengineco/gonzalgo -->
 <!-- ^ how the MCP Registry verifies this PyPI package belongs to that server
      name. It reads the package description, which is this README. Removing the
      line makes the next `mcp-publisher publish` fail package validation. -->
@@ -350,7 +350,7 @@ There is no summary score, deliberately. A theorem either reaches an unfinished
 proof or it does not; averaging that against anything else invents precision the
 measurement does not have.
 
-Full specification: [Kernel Trust Profile](https://f-keys.com/gonzalgo/kernel-trust/).
+Full specification: [Kernel Trust Profile 0.1](https://doi.org/10.5281/zenodo.21913736) (Zenodo).
 A sample is in [`examples/lean-core-kernel-trust.json`](examples/lean-core-kernel-trust.json).
 
 ---
