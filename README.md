@@ -496,6 +496,14 @@ the kernel: 276 accepted, 4 rejected, 275 left free of `Classical.choice`.
 
 ---
 
+## Referenced by
+
+- [keithadler/tenet](https://github.com/keithadler/tenet) — an independent Lean 4
+  kernel checker in C#/.NET. Its `tenet why` traces which step introduced an
+  axiom, the same question as gonzalgo's `why` for Lean.
+
+---
+
 ## Who wrote this, and how to cite it
 
 **Vince Gonzalez** — [ORCID 0009-0005-3640-014X](https://orcid.org/0009-0005-3640-014X)
