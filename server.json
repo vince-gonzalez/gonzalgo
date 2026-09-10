@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.zengineco/gonzalgo",
+  "name": "io.github.vince-gonzalez/gonzalgo",
   "title": "gonzalgo",
   "description": "Reports what a checked Lean 4 or Metamath proof rests on: inherited sorry, compiler trust, axioms.",
   "version": "0.5.5",
