@@ -166,7 +166,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: zengineco/gonzalgo@v1
+      - uses: vince-gonzalez/gonzalgo@v1
         with:
           module: MyProject
 ```
@@ -418,7 +418,7 @@ rather than a file you copy and edit. Add to your `lakefile.toml`:
 ```toml
 [[require]]
 name = "gonzalgo"
-git = "https://github.com/zengineco/gonzalgo"
+git = "https://github.com/vince-gonzalez/gonzalgo"
 ```
 
 Then no scratch file at all — it imports the target module at runtime:
@@ -514,7 +514,7 @@ the kernel: 276 accepted, 4 rejected, 275 left free of `Classical.choice`.
   author  = {Gonzalez, Vince},
   title   = {gonzalgo: axiom provenance for Lean 4 and Metamath},
   year    = {2026},
-  url     = {https://github.com/zengineco/gonzalgo},
+  url     = {https://github.com/vince-gonzalez/gonzalgo},
   doi     = {10.5281/zenodo.21769846},
   license = {Apache-2.0}
 }
