@@ -350,7 +350,7 @@ There is no summary score, deliberately. A theorem either reaches an unfinished
 proof or it does not; averaging that against anything else invents precision the
 measurement does not have.
 
-Full specification: [`ktp/SPEC.md`](https://f-keys.com/gonzalgo/kernel-trust/).
+Full specification: [Kernel Trust Profile](https://f-keys.com/gonzalgo/kernel-trust/).
 A sample is in [`examples/lean-core-kernel-trust.json`](examples/lean-core-kernel-trust.json).
 
 ---
