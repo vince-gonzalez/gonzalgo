@@ -18,7 +18,7 @@
 [![License](https://img.shields.io/pypi/l/gonzalgo)](LICENSE)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21769846-blue)](https://doi.org/10.5281/zenodo.21769846)
 
-<!-- mcp-name: io.github.zengineco/gonzalgo -->
+<!-- mcp-name: io.github.vince-gonzalez/gonzalgo -->
 <!-- ^ how the MCP Registry verifies this PyPI package belongs to that server
      name. It reads the package description, which is this README. Removing the
      line makes the next `mcp-publisher publish` fail package validation. -->
